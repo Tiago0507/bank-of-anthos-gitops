@@ -101,7 +101,7 @@ spec:
                 name: environment-config
             - configMapRef:
                 name: service-api-config
-          image: 826113468369.dkr.ecr.us-east-1.amazonaws.com/frontend:e890cd1f13f19b4955443504084bd4a7af956dcd
+          image: 826113468369.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
           livenessProbe:
             httpGet:
               path: /ready
