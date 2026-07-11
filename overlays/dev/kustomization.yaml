@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+  - namespace.yaml
+
+namespace: dev
+
+# Each overlay carries its own copy of every image tag, independent of
+# the other overlays and of base/ itself. This is what makes promotion
+# between environments possible: bumping a tag here never touches
+# staging/prod's copy, and vice versa.
+images:
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/frontend
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/userservice
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/contacts
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/loadgenerator
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/accounts-db
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/ledger-db
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/balancereader
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/ledgerwriter
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/transactionhistory
+    newTag: latest

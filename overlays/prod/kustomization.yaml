@@ -1,0 +1,34 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+  - namespace.yaml
+
+namespace: prod
+
+replicas:
+  - name: frontend
+    count: 2
+
+# Independent copy of every image tag, promoted here manually (via PR)
+# from overlays/staging once a build has been verified there.
+images:
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/frontend
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/userservice
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/contacts
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/loadgenerator
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/accounts-db
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/ledger-db
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/balancereader
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/ledgerwriter
+    newTag: latest
+  - name: 826113468369.dkr.ecr.us-east-1.amazonaws.com/transactionhistory
+    newTag: latest
